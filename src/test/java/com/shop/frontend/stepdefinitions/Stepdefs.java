@@ -45,7 +45,7 @@ public class Stepdefs {
         driver.quit();
     }
 
-    @Given("user visits The Shop mainpage")
+    @Given("user visits The Shop main page")
     public void userVisitsTheShopMainpage() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");//Before each normally navigates to page, but doing it here as well for better test understandability.
     }
