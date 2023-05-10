@@ -37,6 +37,7 @@ public class Stepdefs {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println("Setting up....");
+        // trigger pipeline text"
     }
 
     @AfterAll
