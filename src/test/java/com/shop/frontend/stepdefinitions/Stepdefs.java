@@ -33,7 +33,10 @@ public class Stepdefs {
     @AfterAll
     public static void tearDown() {
         System.out.println("Closing down....");
-        driver.quit();
+        //Sometimes github think driver is null for some reason so only calling quit method if it is not.
+        if (driver != null){
+            driver.quit();
+        }
     }
 
     @Given("user visits The Shop main page")
