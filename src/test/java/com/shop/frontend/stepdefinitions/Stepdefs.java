@@ -1,9 +1,11 @@
 package com.shop.frontend.stepdefinitions;
 
+import com.shop.frontend.pages.CheckoutPage;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -50,13 +52,28 @@ public class Stepdefs {
     }
 
 
-    // method below can be used for utility purposes during test creation, error searching and simiar
+    // method below can be used for utility purposes during test creation, error searching and similar
     public static void sleep(int numberOfSeconds) {
         try {
             Thread.sleep(numberOfSeconds * 1000); // Sleep for number of seconds
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Given("user set userName to {string}")
+    public void setUserName(String userName) {
+        //Navigating to checkoutpage for testing. TODO:Remove navigation below once navigation step is in place.
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout.html");
+
+        CheckoutPage page = new CheckoutPage(driver);
+        page.setFirstName(userName);
+    }
+
+    @Then("userName should be {string}")
+    public void usernameShouldBe(String expectedValue) {
+        CheckoutPage page = new CheckoutPage(driver);
+        Assert.assertEquals(expectedValue, page.getFirstName());
     }
 }
 
