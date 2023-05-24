@@ -1,0 +1,1 @@
+Feature: Test main page elements and functionality
