@@ -1,0 +1,1 @@
+Feature: Test product page elements and functionality
