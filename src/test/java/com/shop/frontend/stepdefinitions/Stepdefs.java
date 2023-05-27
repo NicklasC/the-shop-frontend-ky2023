@@ -1,6 +1,7 @@
 package com.shop.frontend.stepdefinitions;
 
 import com.shop.frontend.pages.CheckoutPage;
+import com.shop.frontend.pages.MainPage;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
@@ -12,7 +13,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class Stepdefs {
@@ -74,6 +75,19 @@ public class Stepdefs {
     public void usernameShouldBe(String expectedValue) {
         CheckoutPage page = new CheckoutPage(driver);
         Assert.assertEquals(expectedValue, page.getFirstName());
+    }
+
+    // Author: Jim
+    @Given("User is on main page")
+    public void user_is_on_main_page() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+    }
+
+    // Author: Jim
+    @Then("Backpack image should be displayed")
+    public void backpack_image_should_be_displayed() {
+        MainPage mainPage = new MainPage(driver);
+        assertTrue(mainPage.checkBackPackImageIsDisplayed(), "Backpack image is not displayed.");
     }
 }
 
