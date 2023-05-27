@@ -8,13 +8,18 @@ public class MainPage {
     WebDriver driver;
 
     By img_backpack = By.xpath("/html/body/div[1]/div/div[2]/img");
-
+    By txt_heading = By.cssSelector(".display-4.fw-bold.lh-1");
     public MainPage(WebDriver driver) { this.driver = driver; }
 
     // Author: Jim
     public boolean checkBackPackImageIsDisplayed() {
         WebElement backPackImage = driver.findElement(img_backpack);
         return backPackImage.isDisplayed();
+    }
+
+    public String getHeadingText() {
+        WebElement headingText = driver.findElement(txt_heading);
+        return headingText.getText();
     }
 
 }
