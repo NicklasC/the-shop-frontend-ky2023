@@ -20,6 +20,7 @@ public class Stepdefs {
 
     public static WebDriver driver;
 
+    // Author: Nicklas
     @BeforeAll
     public static void setUp() {
         ChromeOptions options = new ChromeOptions();
@@ -33,6 +34,7 @@ public class Stepdefs {
         // trigger pipeline text"
     }
 
+    // Author: Nicklas
     @AfterAll
     public static void tearDown() {
         System.out.println("Closing down....");
@@ -42,17 +44,19 @@ public class Stepdefs {
         }
     }
 
+    // Author: Nicklas
     @Given("user visits The Shop main page")
     public void userVisitsTheShopMainpage() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");//Before each normally navigates to page, but doing it here as well for better test understandability.
     }
 
+    // Author: Nicklas
     @Then("the browser title should be {string}")
     public void theBrowserTitleShouldBe(String expectedTitle) {
         assertEquals(expectedTitle, driver.getTitle(), "Page title is not as expected");
     }
 
-
+    // Author: Nicklas
     // method below can be used for utility purposes during test creation, error searching and similar
     public static void sleep(int numberOfSeconds) {
         try {
@@ -62,6 +66,7 @@ public class Stepdefs {
         }
     }
 
+    // Author: Nicklas
     @Given("user set userName to {string}")
     public void setUserName(String userName) {
         //Navigating to checkoutpage for testing. TODO:Remove navigation below once navigation step is in place.
@@ -71,6 +76,7 @@ public class Stepdefs {
         page.setFirstName(userName);
     }
 
+    // Author: Nicklas
     @Then("userName should be {string}")
     public void usernameShouldBe(String expectedValue) {
         CheckoutPage page = new CheckoutPage(driver);
