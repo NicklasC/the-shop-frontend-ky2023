@@ -31,7 +31,6 @@ public class Stepdefs {
     // Author: Nicklas
     @BeforeAll
     public static void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/sachinmehta/chromedriver_mac64_latest/chromedriver");  //Author: Priyanka
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("incognito");
@@ -151,7 +150,7 @@ public class Stepdefs {
     // Author: Priyanka
     @And("Search the product")
     public void searchTheProduct() {
-        productPage.clickOnSearchField("b");
+        productPage.enterDataInSearchField("b");
     }
 
     // Author: Priyanka

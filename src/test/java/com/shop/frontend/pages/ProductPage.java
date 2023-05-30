@@ -27,7 +27,7 @@ public class ProductPage {
     }
 
     // Author: Priyanka
-    public void clickOnSearchField(String value) {
+    public void enterDataInSearchField(String value) {
         WebElement element = driver.findElement(txt_SearchField);
         element.sendKeys(value);
         element.sendKeys(Keys.ENTER);
