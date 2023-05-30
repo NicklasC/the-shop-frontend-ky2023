@@ -2,24 +2,31 @@ package com.shop.frontend.stepdefinitions;
 
 import com.shop.frontend.pages.CheckoutPage;
 import com.shop.frontend.pages.MainPage;
+import com.shop.frontend.pages.ProductPage;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class Stepdefs {
 
     public static WebDriver driver;
+    public static ProductPage productPage;
 
     // Author: Nicklas
     @BeforeAll
@@ -32,6 +39,7 @@ public class Stepdefs {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println("Setting up....");
+        productPage = new ProductPage(driver); //Author: Priyanka
         // trigger pipeline text"
     }
 
@@ -40,7 +48,7 @@ public class Stepdefs {
     public static void tearDown() {
         System.out.println("Closing down....");
         //Sometimes github think driver is null for some reason so only calling quit method if it is not.
-        if (driver != null){
+        if (driver != null) {
             driver.quit();
         }
     }
@@ -124,6 +132,33 @@ public class Stepdefs {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
         String actualUrl = mainPage.getCurrentURL();
         assertEquals(expectedUrl, actualUrl, "All products button is not working.");
+    }
+
+
+    // Author: Priyanka
+    @Given("Visit The Shop Website")
+    public void visitTheShopWebsite() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+    }
+
+    // Author: Priyanka
+    @When("Click on the Shop tab")
+    public void clickOnTheShopTab() {
+        productPage.clickOnButtonShop();
+    }
+
+    // Author: Priyanka
+    @And("Search the product")
+    public void searchTheProduct() {
+        productPage.enterDataInSearchField("b");
+    }
+
+    // Author: Priyanka
+    @Then("Product should be displayed")
+    public void productShouldBeDisplayed() {
+        List<WebElement> products = productPage.getProductList();
+        Assertions.assertFalse(products.isEmpty());
+
     }
 
 }
