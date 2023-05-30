@@ -95,6 +95,14 @@ public class Stepdefs {
         MainPage mainPage = new MainPage(driver);
         assertTrue(mainPage.checkBackPackImageIsDisplayed(), "Backpack image is not displayed.");
     }
+
+    // Author: Jim
+    @Then("Heading should be {string}")
+    public void heading_should_be(String headingText) {
+        MainPage mainPage = new MainPage(driver);
+        assertEquals(headingText, mainPage.getHeadingText(), "Heading is not correct.");
+    }
+
 }
 
 
