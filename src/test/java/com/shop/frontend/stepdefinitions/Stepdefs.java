@@ -4,6 +4,7 @@ import com.shop.frontend.pages.CheckoutPage;
 import com.shop.frontend.pages.MainPage;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,7 +15,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class Stepdefs {
@@ -40,7 +42,7 @@ public class Stepdefs {
     public static void tearDown() {
         System.out.println("Closing down....");
         //Sometimes github think driver is null for some reason so only calling quit method if it is not.
-        if (driver != null){
+        if (driver != null) {
             driver.quit();
         }
     }
@@ -124,6 +126,12 @@ public class Stepdefs {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
         String actualUrl = mainPage.getCurrentURL();
         assertEquals(expectedUrl, actualUrl, "All products button is not working.");
+    }
+
+    // Author: Priyanka
+    @And("Click on All tab")
+    public void clickOnAllTab() {
+        productPage.clickOnTabAll();
     }
 
 }
