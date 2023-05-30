@@ -6,6 +6,7 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -101,6 +102,28 @@ public class Stepdefs {
     public void heading_should_be(String headingText) {
         MainPage mainPage = new MainPage(driver);
         assertEquals(headingText, mainPage.getHeadingText(), "Heading is not correct.");
+    }
+
+    // Author: Jim
+    @Given("User is still on main page")
+    public void user_is_still_on_main_page() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+    }
+
+    // Author: Jim
+    @When("User clicks on the All products button")
+    public void user_clicks_on_the_all_products_button() {
+        MainPage mainPage = new MainPage(driver);
+        mainPage.clickOnAllProductsButton();
+    }
+
+    // Author: Jim
+    @Then("User should be navigated to the products page")
+    public void user_should_be_navigated_to_the_products_page() {
+        MainPage mainPage = new MainPage(driver);
+        String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
+        String actualUrl = mainPage.getCurrentURL();
+        assertEquals(expectedUrl, actualUrl, "All products button is not working.");
     }
 
 }
