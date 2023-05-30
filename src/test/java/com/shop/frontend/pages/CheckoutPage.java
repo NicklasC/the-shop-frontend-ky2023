@@ -12,10 +12,13 @@ public class CheckoutPage {
         this.driver = driver;
     }
 
+    // Author: Nicklas
     public void setFirstName(String value){
         driver.findElement(txt_FirstName).sendKeys(value);
 
     }
+
+    // Author: Nicklas
     public String getFirstName() {
         return driver.findElement(txt_FirstName).getAttribute("value");
     }
