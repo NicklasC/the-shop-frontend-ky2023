@@ -12,12 +12,12 @@ public class Header {
     // Author: Camilla
     By link_shop = By.xpath("/html/body/header/div/div/ul/li[2]/a");
 
+    // Author: Nicklas
+    By txt_checkoutButtonText = By.className("rounded-pill");
+
 
     // Author: Camilla
     public Header(WebDriver driver){
-    By txt_checkoutButtonText = By.className("rounded-pill");
-
-    public Header(WebDriver driver) {
         this.driver = driver;
     }
 
