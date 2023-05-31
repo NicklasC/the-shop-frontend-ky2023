@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Stepdefs {
 
     public static WebDriver driver;
-    public static ProductPage productPage;
+    public static ProductPage productPage; //Author: Priyanka
 
     // Author: Nicklas
     @BeforeAll
@@ -43,6 +43,7 @@ public class Stepdefs {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println("Setting up....");
         productPage = new ProductPage(driver); //Author: Priyanka
+
         // trigger pipeline text"
     }
 
@@ -137,7 +138,6 @@ public class Stepdefs {
         assertEquals(expectedUrl, actualUrl, "All products button is not working.");
     }
 
-
     // Author: Priyanka
     @Given("Visit The Shop Website")
     public void visitTheShopWebsite() {
@@ -161,7 +161,19 @@ public class Stepdefs {
     public void productShouldBeDisplayed() {
         List<WebElement> products = productPage.getProductList();
         Assertions.assertFalse(products.isEmpty());
+    }
 
+    // Author: Priyanka
+    @And("Click on Men's Clothing tab")
+    public void clickOnMensClothingTab() {
+        productPage.clickOnMensClothingTab();
+    }
+
+    // Author: Priyanka
+    @Then("Men's Product should be displayed")
+    public void mensProductShouldBeDisplayed() {
+        List<WebElement> mensProducts = productPage.getMensProductList();
+        Assertions.assertFalse(mensProducts.isEmpty());
     }
 
     // Author: Priyanka
