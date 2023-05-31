@@ -48,6 +48,7 @@ public class ProductPage {
         WebElement AllTab = driver.findElement(tabAll);
         AllTab.click();
         return AllTab;
+    }
     // Author: Priyanka
     public WebElement clickOnMensClothingTab() {
         WebElement TabMensClothing = driver.findElement(tabMensClothing);
