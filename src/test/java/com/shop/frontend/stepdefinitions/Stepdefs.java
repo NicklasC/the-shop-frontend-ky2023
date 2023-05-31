@@ -37,6 +37,7 @@ public class Stepdefs {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("incognito");
         options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
