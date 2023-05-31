@@ -15,6 +15,9 @@ public class Header {
 
     // Author: Camilla
     public Header(WebDriver driver){
+    By txt_checkoutButtonText = By.className("rounded-pill");
+
+    public Header(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -35,5 +38,19 @@ public class Header {
     // Author: Camilla
     public String getCurrentURL() {
         return driver.getCurrentUrl();
+    }
+
+    // Author: Nicklas
+    public String getCheckoutButtonText() {
+        return driver.findElement(txt_checkoutButtonText).getText();
+    }
+
+    // Author: Nicklas
+    public boolean checkoutButtonTextIsZeroOrNull() {
+        if (driver.findElement(txt_checkoutButtonText).getText().equals("") || driver.findElement(txt_checkoutButtonText).getText().equals("0")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

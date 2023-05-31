@@ -12,6 +12,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,8 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Stepdefs {
 
     public static WebDriver driver;
+    public static ProductPage productPage; // Author: Priyanka
     public static Header header; // Author: Camilla
-    public static ProductPage productPage;
 
     // Author: Nicklas
     @BeforeAll
@@ -37,12 +38,14 @@ public class Stepdefs {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("incognito");
         options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println("Setting up....");
         header = new Header(driver); // Author: Camilla
-        productPage = new ProductPage(driver); //Author: Priyanka
+        productPage = new ProductPage(driver); // Author: Priyanka
+
         // trigger pipeline text"
     }
 
@@ -209,11 +212,46 @@ public class Stepdefs {
     }
 
     // Author: Priyanka
+    @And("Click on Men's Clothing tab")
+    public void clickOnMensClothingTab() {
+        productPage.clickOnMensClothingTab();
+    }
+
+    // Author: Priyanka
+    @Then("Men's Product should be displayed")
+    public void mensProductShouldBeDisplayed() {
+        List<WebElement> mensProducts = productPage.getMensProductList();
+        Assertions.assertFalse(mensProducts.isEmpty());
+    }
+
+    // Author: Priyanka
     @And("Click on All tab")
     public void clickOnAllTab() {
         productPage.clickOnTabAll();
     }
 
+    // Author: Nicklas
+    @And("adding product with heading {string}")
+    public void addProductWithProductText(String productText) {
+        String xpathExpression = "//h3[contains(text(), '" + productText + "')]/following-sibling::button[1]";
+
+        WebElement addButton = driver.findElement(By.xpath(xpathExpression));
+        addButton.click();
+    }
+
+    // Author: Nicklas
+    @Then("checkout button text should be empty or zero")
+    public void checkoutButtonTexIsEmptyOrZero() {
+        Header header = new Header(driver);
+        Assert.assertTrue(header.checkoutButtonTextIsZeroOrNull());
+    }
+
+    // Author: Nicklas
+    @Then("checkout button text should be {string}")
+    public void checkoutButtonTextShouldShow(String expectedNumber) {
+        Header header = new Header(driver);
+        Assert.assertEquals(expectedNumber, header.getCheckoutButtonText());
+    }
 }
 
 
