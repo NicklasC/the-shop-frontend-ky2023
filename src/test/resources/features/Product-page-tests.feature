@@ -8,8 +8,6 @@ Feature: Test product page elements and functionality
     And Search the product
     Then Product should be displayed
 
-  // Author: Priyanka
-
   Scenario: Validate click on All Tab
     Given Visit The Shop Website
     When Click on the Shop tab

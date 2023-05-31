@@ -158,7 +158,6 @@ public class Stepdefs {
     public void productShouldBeDisplayed() {
         List<WebElement> products = productPage.getProductList();
         Assertions.assertFalse(products.isEmpty());
-
     }
 
     // Author: Priyanka

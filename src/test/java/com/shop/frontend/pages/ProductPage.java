@@ -14,6 +14,7 @@ public class ProductPage {
     By btn_Shop = By.xpath("/html/body/header/div/div/ul/li[2]/a");
     By txt_SearchField = By.id("search");
     By productList = By.className("col");
+    By tabAll = By.xpath("/html/body/div[1]/div/ul/li[1]/a");
 
     public ProductPage(WebDriver driver) {
         this.driver = driver;
@@ -23,7 +24,6 @@ public class ProductPage {
     public void clickOnButtonShop() {
         WebElement element = driver.findElement(btn_Shop);
         element.click();
-
     }
 
     // Author: Priyanka
@@ -31,16 +31,12 @@ public class ProductPage {
         WebElement element = driver.findElement(txt_SearchField);
         element.sendKeys(value);
         element.sendKeys(Keys.ENTER);
-    // Author: Priyanka
-    By tabAll = By.xpath("/html/body/div[1]/div/ul/li[1]/a");
-
     }
 
     // Author: Priyanka
     public List<WebElement> getProductList() {
         List<WebElement> products = Collections.singletonList(driver.findElement(productList));
         return products;
-
     }
 
     // Author: Priyanka
