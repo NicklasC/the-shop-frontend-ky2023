@@ -164,6 +164,12 @@ public class Stepdefs {
 
     }
 
+    // Author: Priyanka
+    @And("Click on All tab")
+    public void clickOnAllTab() {
+        productPage.clickOnTabAll();
+    }
+
     // Author: Nicklas
     @And("adding product with heading {string}")
     public void addProductWithProductText(String productText) {
