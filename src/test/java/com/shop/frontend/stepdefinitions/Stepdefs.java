@@ -179,6 +179,15 @@ public class Stepdefs {
         mainPage.clickOnAllProductsButton();
     }
 
+    // Author: Jim
+    @Then("User should be navigated to the products page")
+    public void user_should_be_navigated_to_the_products_page() {
+        MainPage mainPage = new MainPage(driver);
+        String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
+        String actualUrl = mainPage.getCurrentURL();
+        assertEquals(expectedUrl, actualUrl, "All products button is not working.");
+    }
+
 
 
     // Author: Priyanka
