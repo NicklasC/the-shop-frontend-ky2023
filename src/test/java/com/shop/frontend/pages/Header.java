@@ -10,6 +10,8 @@ public class Header {
     By link_home = By.xpath("/html/body/header/div/div/ul/li[1]/a");
     By link_shop = By.xpath("/html/body/header/div/div/ul/li[2]/a");
 
+    By webElement_headerLogo = By.xpath("/html/body/header/div/div/a/h1");
+
 
     public Header(WebDriver driver){
         this.driver = driver;
@@ -29,5 +31,10 @@ public class Header {
 
     public String getCurrentURL() {
         return driver.getCurrentUrl();
+    }
+
+    public boolean verifyLogoIsDisplayed() {
+        WebElement headerLogo = driver.findElement(webElement_headerLogo);
+        return headerLogo.isDisplayed();
     }
 }

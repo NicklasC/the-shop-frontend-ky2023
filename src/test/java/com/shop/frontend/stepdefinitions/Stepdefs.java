@@ -97,6 +97,12 @@ public class Stepdefs {
         assertEquals(expectedUrl, actualUrl, "The Shop link in the header does not navigate to the right location");
     }
 
+    // Author: Camilla
+    @Then("The website logo should be visible")
+    public void the_website_logo_should_be_visible() {
+        assertTrue(header.verifyLogoIsDisplayed(), "The header logo is not displayed.");
+    }
+
 
 
     // Author: Nicklas
@@ -173,14 +179,6 @@ public class Stepdefs {
         mainPage.clickOnAllProductsButton();
     }
 
-    // Author: Jim
-    @Then("User should be navigated to the products page")
-    public void user_should_be_navigated_to_the_products_page() {
-        MainPage mainPage = new MainPage(driver);
-        String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
-        String actualUrl = mainPage.getCurrentURL();
-        assertEquals(expectedUrl, actualUrl, "All products button is not working.");
-    }
 
 
     // Author: Priyanka
