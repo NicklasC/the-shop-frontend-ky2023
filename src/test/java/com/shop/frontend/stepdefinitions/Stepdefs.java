@@ -82,16 +82,16 @@ public class Stepdefs {
     }
 
     // Author: Camilla
-    @Then("User should be navigated to the main page")
-    public void user_should_be_navigated_to_the_main_page() {
+    @Then("The user should be navigated to the main page")
+    public void the_user_should_be_navigated_to_the_main_page() {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/index.html";
         String actualUrl = header.getCurrentURL();
         assertEquals(expectedUrl, actualUrl, "The Home link in the header does not navigate to the right location");
     }
 
     // Author: Camilla
-    @Then("User should be navigated to the products page")
-    public void user_should_be_navigated_to_the_products_page() {
+    @Then("The user should be navigated to the products page")
+    public void the_user_should_be_navigated_to_the_products_page() {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
         String actualUrl = header.getCurrentURL();
         assertEquals(expectedUrl, actualUrl, "The Shop link in the header does not navigate to the right location");
