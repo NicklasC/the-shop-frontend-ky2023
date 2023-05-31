@@ -9,11 +9,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class ProductPage {
+
     WebDriver driver;
     // Author: Priyanka
     By btn_Shop = By.xpath("/html/body/header/div/div/ul/li[2]/a");
     By txt_SearchField = By.id("search");
     By productList = By.className("col");
+    By mensProductList = By.xpath("//*[@id=\"main\"]/div[2]/div/div/h3");
     By tabMensClothing = By.xpath("/html/body/div[1]/div/ul/li[2]/a");
 
     public ProductPage(WebDriver driver) {
@@ -40,10 +42,17 @@ public class ProductPage {
         return products;
     }
 
+    // Author: Priyanka
     public WebElement clickOnMensClothingTab() {
         WebElement TabMensClothing = driver.findElement(tabMensClothing);
         TabMensClothing.click();
         return TabMensClothing;
+    }
+
+    // Author: Priyanka
+    public List<WebElement> getMensProductList() {
+        List<WebElement> mensProducts = Collections.singletonList(driver.findElement(mensProductList));
+        return mensProducts;
     }
 
 }

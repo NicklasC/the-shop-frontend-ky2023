@@ -26,8 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Stepdefs {
 
     public static WebDriver driver;
-
-    public static ProductPage productPage;
+    public static ProductPage productPage; //Author: Priyanka
 
     // Author: Nicklas
     @BeforeAll
@@ -165,6 +164,13 @@ public class Stepdefs {
     @And("Click on Men's Clothing tab")
     public void clickOnMensClothingTab() {
         productPage.clickOnMensClothingTab();
+    }
+
+    // Author: Priyanka
+    @Then("Men's Product should be displayed")
+    public void mensProductShouldBeDisplayed() {
+        List<WebElement> mensProducts = productPage.getMensProductList();
+        Assertions.assertFalse(mensProducts.isEmpty());
     }
 
 }

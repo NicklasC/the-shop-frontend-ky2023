@@ -11,4 +11,4 @@ Feature: Test product page elements and functionality
     Given Visit The Shop Website
     When Click on the Shop tab
     And Click on Men's Clothing tab
-    Then Product should be displayed
+    Then Men's Product should be displayed
