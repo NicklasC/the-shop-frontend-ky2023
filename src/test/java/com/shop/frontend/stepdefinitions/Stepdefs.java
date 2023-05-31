@@ -1,6 +1,7 @@
 package com.shop.frontend.stepdefinitions;
 
 import com.shop.frontend.pages.CheckoutPage;
+import com.shop.frontend.pages.Header;
 import com.shop.frontend.pages.MainPage;
 import com.shop.frontend.pages.ProductPage;
 import io.cucumber.java.AfterAll;
@@ -11,6 +12,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,6 +37,7 @@ public class Stepdefs {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("incognito");
         options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -173,6 +176,35 @@ public class Stepdefs {
         Assertions.assertFalse(mensProducts.isEmpty());
     }
 
+    // Author: Priyanka
+    @And("Click on All tab")
+    public void clickOnAllTab() {
+        productPage.clickOnTabAll();
+    }
+
+    // Author: Nicklas
+    @And("adding product with heading {string}")
+    public void addProductWithProductText(String productText) {
+        String xpathExpression = "//h3[contains(text(), '" + productText + "')]/following-sibling::button[1]";
+
+        WebElement addButton = driver.findElement(By.xpath(xpathExpression));
+        addButton.click();
+    }
+
+    // Author: Nicklas
+    @Then("checkout button text should be empty or zero")
+    public void checkoutButtonTexIsEmptyOrZero() {
+        Header header = new Header(driver);
+        Assert.assertTrue(header.checkoutButtonTextIsZeroOrNull());
+    }
+
+    // Author: Nicklas
+    @Then("checkout button text should be {string}")
+    public void checkoutButtonTextShouldShow(String expectedNumber) {
+        Header header = new Header(driver);
+        Assert.assertEquals(expectedNumber, header.getCheckoutButtonText());
+    }
 }
+
 
 
