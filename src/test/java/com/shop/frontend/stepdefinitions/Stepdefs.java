@@ -158,7 +158,12 @@ public class Stepdefs {
     public void productShouldBeDisplayed() {
         List<WebElement> products = productPage.getProductList();
         Assertions.assertFalse(products.isEmpty());
+    }
 
+    // Author: Priyanka
+    @And("Click on All tab")
+    public void clickOnAllTab() {
+        productPage.clickOnTabAll();
     }
 
 }
