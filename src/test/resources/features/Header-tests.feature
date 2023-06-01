@@ -13,6 +13,7 @@ Feature: Test header elements and functionality
     When User clicks on Shop link in the header
     Then The user should be navigated to the products page
 
+    # // Author: Camilla
   Scenario: Verify that the website logo is visible
     Given User is on the page https://webshop-agil-testautomatiserare.netlify.app/
     Then The website logo should be visible

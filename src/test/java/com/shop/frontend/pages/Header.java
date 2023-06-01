@@ -19,7 +19,8 @@ public class Header {
     By button_checkout = By.className("btn-warning");
 
     // Author: Nicklas
-    By txt_checkoutButtonText = By.className("rounded-pill");
+    By txt_checkoutBadgeText = By.className("rounded-pill");
+    By btn_checkoutButton = By.cssSelector("a[type='button']");
 
 
     // Author: Camilla
@@ -60,13 +61,19 @@ public class Header {
     }
 
     // Author: Nicklas
-    public String getCheckoutButtonText () {
-        return driver.findElement(txt_checkoutButtonText).getText();
+    public String getCheckoutBadgeText() {
+        return driver.findElement(txt_checkoutBadgeText).getText();
+    }
+
+    // Author: Nicklas
+    public void clickOnCheckoutButton() {
+        WebElement checkoutButton = driver.findElement(btn_checkoutButton);
+        checkoutButton.click();
     }
 
     // Author: Nicklas
     public boolean checkoutButtonTextIsZeroOrNull() {
-        if (driver.findElement(txt_checkoutButtonText).getText().equals("") || driver.findElement(txt_checkoutButtonText).getText().equals("0")) {
+        if (driver.findElement(txt_checkoutBadgeText).getText().equals("") || driver.findElement(txt_checkoutBadgeText).getText().equals("0")) {
             return true;
         } else {
             return false;
