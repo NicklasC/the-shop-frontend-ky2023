@@ -12,12 +12,16 @@ public class Header {
     // Author: Camilla
     By link_shop = By.xpath("/html/body/header/div/div/ul/li[2]/a");
 
+
+    By webElement_headerLogo = By.xpath("/html/body/header/div/div/a/h1");
+
+
     // Author: Nicklas
     By txt_checkoutButtonText = By.className("rounded-pill");
 
 
     // Author: Camilla
-    public Header(WebDriver driver){
+    public Header(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -40,8 +44,14 @@ public class Header {
         return driver.getCurrentUrl();
     }
 
+    // Author: Camilla
+    public boolean verifyLogoIsDisplayed() {
+        WebElement headerLogo = driver.findElement(webElement_headerLogo);
+        return headerLogo.isDisplayed();
+    }
+
     // Author: Nicklas
-    public String getCheckoutButtonText() {
+    public String getCheckoutButtonText () {
         return driver.findElement(txt_checkoutButtonText).getText();
     }
 
