@@ -66,22 +66,15 @@ public class Stepdefs {
     }
 
     // Author: Camilla
-    @When("User clicks on a link in the header")
-    public void user_clicks_on_a_link_in_the_header() {
-        header.clickHomeLink();
-        header.clickShopLink();
+    @Then("The website logo should be visible")
+    public void the_website_logo_should_be_visible() {
+        assertTrue(header.verifyLogoIsDisplayed(), "The header logo is not displayed.");
     }
 
     // Author: Camilla
     @When("User clicks on Home link in the header")
     public void user_clicks_on_home_link_in_the_header() {
         header.clickHomeLink();
-    }
-
-    // Author: Camilla
-    @When("User clicks on Shop link in the header")
-    public void user_clicks_on_shop_link_in_the_header() {
-        header.clickShopLink();
     }
 
     // Author: Camilla
@@ -93,6 +86,12 @@ public class Stepdefs {
     }
 
     // Author: Camilla
+    @When("User clicks on Shop link in the header")
+    public void user_clicks_on_shop_link_in_the_header() {
+        header.clickShopLink();
+    }
+
+    // Author: Camilla
     @Then("The user should be navigated to the products page")
     public void the_user_should_be_navigated_to_the_products_page() {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
@@ -101,9 +100,17 @@ public class Stepdefs {
     }
 
     // Author: Camilla
-    @Then("The website logo should be visible")
-    public void the_website_logo_should_be_visible() {
-        assertTrue(header.verifyLogoIsDisplayed(), "The header logo is not displayed.");
+    @When("User clicks on the checkout button in the header")
+    public void user_clicks_on_the_checkout_button_in_the_header() {
+        header.clickCheckoutButton();
+    }
+
+    // Author: Camilla
+    @Then("The user should be navigated to the checkout page")
+    public void the_user_should_be_navigated_to_the_checkout_page() {
+        String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/checkout.html";
+        String actualUrl = header.getCurrentURL();
+        assertEquals(expectedUrl, actualUrl, "The checkout button in the header does not navigate to the right location");
     }
 
 
