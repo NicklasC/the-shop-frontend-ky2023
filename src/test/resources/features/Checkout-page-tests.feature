@@ -1,11 +1,12 @@
 Feature: Test checkout page validation and functionality
 
   #TODO: This is a tutorial scenario, remove when suitable.
+  # Author: Nicklas
   Scenario: Set username and verify it shows
     Given user set userName to "Nicklas"
     Then userName should be "Nicklas"
 
-
+# Author: Nicklas
   Scenario: Add products to cart and verify sum is correct
     Given Visit The Shop Website
     When Click on the Shop tab
@@ -19,7 +20,7 @@ Feature: Test checkout page validation and functionality
     Then cart size should be "3"
     And checkout total should be "$188"
 
-
+# Author: Nicklas
   Scenario: Verify removing items from the cart
     Given Visit The Shop Website
     When Click on the Shop tab
