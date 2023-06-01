@@ -10,9 +10,9 @@ Feature: Test product page elements and functionality
     Scenario: Add product to cart
       Given Visit The Shop Website
       When Click on the Shop tab
-      Then checkout button text should be empty or zero
+      Then checkout badge text should be empty or zero
       And adding product with heading "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
-      Then checkout button text should be "1"
+      Then checkout badge text should be "1"
 
   Scenario: Validate click on All Tab
     Given Visit The Shop Website

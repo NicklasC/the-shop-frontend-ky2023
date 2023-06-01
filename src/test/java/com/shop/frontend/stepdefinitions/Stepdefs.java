@@ -4,8 +4,8 @@ import com.shop.frontend.pages.CheckoutPage;
 import com.shop.frontend.pages.Header;
 import com.shop.frontend.pages.MainPage;
 import com.shop.frontend.pages.ProductPage;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.BeforeAll;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -31,8 +31,10 @@ public class Stepdefs {
     public static ProductPage productPage; // Author: Priyanka
     public static Header header; // Author: Camilla
 
+    public static CheckoutPage checkoutPage;
+
     // Author: Nicklas
-    @BeforeAll
+    @Before
     public static void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -45,12 +47,11 @@ public class Stepdefs {
         System.out.println("Setting up....");
         header = new Header(driver); // Author: Camilla
         productPage = new ProductPage(driver); // Author: Priyanka
-
-        // trigger pipeline text"
+        checkoutPage = new CheckoutPage(driver);// Author: Nicklas
     }
 
     // Author: Nicklas
-    @AfterAll
+    @After
     public static void tearDown() {
         System.out.println("Closing down....");
         //Sometimes github think driver is null for some reason so only calling quit method if it is not.
@@ -107,7 +108,6 @@ public class Stepdefs {
     }
 
 
-
     // Author: Nicklas
     @Given("user visits The Shop main page")
     public void userVisitsTheShopMainpage() {
@@ -146,7 +146,6 @@ public class Stepdefs {
         CheckoutPage page = new CheckoutPage(driver);
         Assert.assertEquals(expectedValue, page.getFirstName());
     }
-
 
 
     // Author: Jim
@@ -190,8 +189,6 @@ public class Stepdefs {
         String actualUrl = mainPage.getCurrentURL();
         assertEquals(expectedUrl, actualUrl, "All products button is not working.");
     }
-
-
 
     // Author: Priyanka
     @Given("Visit The Shop Website")
@@ -241,23 +238,52 @@ public class Stepdefs {
     @And("adding product with heading {string}")
     public void addProductWithProductText(String productText) {
         String xpathExpression = "//h3[contains(text(), '" + productText + "')]/following-sibling::button[1]";
-
         WebElement addButton = driver.findElement(By.xpath(xpathExpression));
         addButton.click();
     }
 
     // Author: Nicklas
-    @Then("checkout button text should be empty or zero")
-    public void checkoutButtonTexIsEmptyOrZero() {
+    @Then("checkout badge text should be empty or zero")
+    public void checkoutBadgeTextIsEmptyOrZero() {
         Header header = new Header(driver);
         Assert.assertTrue(header.checkoutButtonTextIsZeroOrNull());
     }
 
     // Author: Nicklas
-    @Then("checkout button text should be {string}")
-    public void checkoutButtonTextShouldShow(String expectedNumber) {
+    @Then("checkout badge text should be {string}")
+    public void checkoutBadgeTextShouldShow(String expectedNumber) {
         Header header = new Header(driver);
-        Assert.assertEquals(expectedNumber, header.getCheckoutButtonText());
+        Assert.assertEquals(expectedNumber, header.getCheckoutBadgeText());
+    }
+
+    // Author: Nicklas
+    @And("click on checkout button")
+    public void clickOnCheckoutButton() {
+        header.clickOnCheckoutButton();
+    }
+
+    // Author: Nicklas
+    @Then("checkout form should display")
+    public void checkoutFormShouldDisplay() {
+        Assert.assertTrue(checkoutPage.pageHeaderDisplays());
+    }
+
+    // Author: Nicklas
+    @And("checkout total should be {string}")
+    public void checkoutTotalShouldBe(String expectedSum) {
+        Assert.assertEquals(expectedSum, checkoutPage.getOrderSum());
+    }
+
+    // Author: Nicklas
+    @Then("click the top remove button")
+    public void clickTheTopRemoveButton() {
+        checkoutPage.clickFirstRemoveButton();
+    }
+
+    // Author: Nicklas
+    @Then("cart size should be {string}")
+    public void cartSizeShouldBe(String expectedString) {
+        Assert.assertEquals("Cart size should be " + expectedString, expectedString, checkoutPage.getCartSize());
     }
 }
 
