@@ -1,9 +1,6 @@
 package com.shop.frontend.stepdefinitions;
 
-import com.shop.frontend.pages.CheckoutPage;
-import com.shop.frontend.pages.Header;
-import com.shop.frontend.pages.MainPage;
-import com.shop.frontend.pages.ProductPage;
+import com.shop.frontend.pages.*;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.And;
@@ -30,6 +27,7 @@ public class Stepdefs {
     public static WebDriver driver;
     public static ProductPage productPage; // Author: Priyanka
     public static Header header; // Author: Camilla
+    public static Footer footer; // Author: Daniel
 
     // Author: Nicklas
     @BeforeAll
@@ -45,6 +43,7 @@ public class Stepdefs {
         System.out.println("Setting up....");
         header = new Header(driver); // Author: Camilla
         productPage = new ProductPage(driver); // Author: Priyanka
+        footer = new Footer(driver); // Author: Daniel
 
         // trigger pipeline text"
     }
@@ -259,6 +258,59 @@ public class Stepdefs {
         Header header = new Header(driver);
         Assert.assertEquals(expectedNumber, header.getCheckoutButtonText());
     }
+
+    // Author: Daniel
+    @Given("User is on the product page")
+    public void user_is_on_the_product_page() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/products.html");
+    }
+    // Author: Daniel
+    @When("User clicks on the Home link in the footer")
+    public void user_clicks_on_the_home_link_in_the_footer() {
+        footer.clickOnTheHomeLink();
+    }
+
+    // Author: Daniel
+    @Then("The headline on the page directed to should be {string}")
+    public void the_headline_on_the_page_directed_to_should_be(String expectedHeading) {
+        MainPage mainPage = new MainPage(driver);
+        String actualHeading = mainPage.getHeadingText();
+        assertEquals(expectedHeading, actualHeading, "The heading doesn't seem to be correct");
+    }
+
+    // Author: Daniel
+    @When("When user clicks on the Shop link in the footer")
+    public void when_user_clicks_on_the_shop_link_in_the_footer() {
+        footer.clickOnTheShopLink();
+    }
+
+    // Author: Daniel
+    @Then("The url for the Shop page should be {string}")
+    public void the_url_for_the_shop_page_should_be(String expectedUrl) {
+        String actualUrl = footer.getCurrentUrl();
+        assertEquals(expectedUrl, actualUrl, "The url doesn't seem to be correct");
+    }
+
+    // Author: Daniel
+    @When("User clicks on the Checkout link in the footer")
+    public void user_clicks_on_the_checkout_link_in_the_footer() {
+        footer.clickOnTheCheckoutLink();
+    }
+
+    // Author: Daniel
+    @Then("The url for the Checkout page should be {string}")
+    public void the_url_for_the_checkout_page_should_be(String expectedUrl) {
+        String actualUrl = footer.getCurrentUrl();
+        assertEquals(expectedUrl, actualUrl, "The url doesn't seem to be correct");
+    }
+
+    // Author: Daniel
+    @Then("The text in the footer should be {string}")
+    public void the_text_in_the_footer_should_be(String expectedText) {
+        String actualText = footer.getFooterText();
+        assertEquals(expectedText, actualText, "The text doesn't seem to be correct");
+    }
+
 }
 
 
