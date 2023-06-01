@@ -1,11 +1,10 @@
 package com.shop.frontend.stepdefinitions;
 
-import com.shop.frontend.pages.CheckoutPage;
-import com.shop.frontend.pages.Header;
-import com.shop.frontend.pages.MainPage;
-import com.shop.frontend.pages.ProductPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import com.shop.frontend.pages.*;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -30,6 +29,7 @@ public class Stepdefs {
     public static WebDriver driver;
     public static ProductPage productPage; // Author: Priyanka
     public static Header header; // Author: Camilla
+    public static Footer footer; // Author: Daniel
 
     public static CheckoutPage checkoutPage;
 
@@ -48,6 +48,7 @@ public class Stepdefs {
         header = new Header(driver); // Author: Camilla
         productPage = new ProductPage(driver); // Author: Priyanka
         checkoutPage = new CheckoutPage(driver);// Author: Nicklas
+        footer = new Footer(driver); // Author: Daniel
     }
 
     // Author: Nicklas
@@ -67,22 +68,15 @@ public class Stepdefs {
     }
 
     // Author: Camilla
-    @When("User clicks on a link in the header")
-    public void user_clicks_on_a_link_in_the_header() {
-        header.clickHomeLink();
-        header.clickShopLink();
+    @Then("The website logo should be visible")
+    public void the_website_logo_should_be_visible() {
+        assertTrue(header.verifyLogoIsDisplayed(), "The header logo is not displayed.");
     }
 
     // Author: Camilla
     @When("User clicks on Home link in the header")
     public void user_clicks_on_home_link_in_the_header() {
         header.clickHomeLink();
-    }
-
-    // Author: Camilla
-    @When("User clicks on Shop link in the header")
-    public void user_clicks_on_shop_link_in_the_header() {
-        header.clickShopLink();
     }
 
     // Author: Camilla
@@ -94,6 +88,12 @@ public class Stepdefs {
     }
 
     // Author: Camilla
+    @When("User clicks on Shop link in the header")
+    public void user_clicks_on_shop_link_in_the_header() {
+        header.clickShopLink();
+    }
+
+    // Author: Camilla
     @Then("The user should be navigated to the products page")
     public void the_user_should_be_navigated_to_the_products_page() {
         String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
@@ -102,11 +102,18 @@ public class Stepdefs {
     }
 
     // Author: Camilla
-    @Then("The website logo should be visible")
-    public void the_website_logo_should_be_visible() {
-        assertTrue(header.verifyLogoIsDisplayed(), "The header logo is not displayed.");
+    @When("User clicks on the checkout button in the header")
+    public void user_clicks_on_the_checkout_button_in_the_header() {
+        header.clickCheckoutButton();
     }
 
+    // Author: Camilla
+    @Then("The user should be navigated to the checkout page")
+    public void the_user_should_be_navigated_to_the_checkout_page() {
+        String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/checkout.html";
+        String actualUrl = header.getCurrentURL();
+        assertEquals(expectedUrl, actualUrl, "The checkout button in the header does not navigate to the right location");
+    }
 
     // Author: Nicklas
     @Given("user visits The Shop main page")
@@ -146,7 +153,6 @@ public class Stepdefs {
         CheckoutPage page = new CheckoutPage(driver);
         Assert.assertEquals(expectedValue, page.getFirstName());
     }
-
 
     // Author: Jim
     @Given("User is on main page")
@@ -285,6 +291,59 @@ public class Stepdefs {
     public void cartSizeShouldBe(String expectedString) {
         Assert.assertEquals("Cart size should be " + expectedString, expectedString, checkoutPage.getCartSize());
     }
+
+    // Author: Daniel
+    @Given("User is on the product page")
+    public void user_is_on_the_product_page() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/products.html");
+    }
+    // Author: Daniel
+    @When("User clicks on the Home link in the footer")
+    public void user_clicks_on_the_home_link_in_the_footer() {
+        footer.clickOnTheHomeLink();
+    }
+
+    // Author: Daniel
+    @Then("The headline on the page directed to should be {string}")
+    public void the_headline_on_the_page_directed_to_should_be(String expectedHeading) {
+        MainPage mainPage = new MainPage(driver);
+        String actualHeading = mainPage.getHeadingText();
+        assertEquals(expectedHeading, actualHeading, "The heading doesn't seem to be correct");
+    }
+
+    // Author: Daniel
+    @When("When user clicks on the Shop link in the footer")
+    public void when_user_clicks_on_the_shop_link_in_the_footer() {
+        footer.clickOnTheShopLink();
+    }
+
+    // Author: Daniel
+    @Then("The url for the Shop page should be {string}")
+    public void the_url_for_the_shop_page_should_be(String expectedUrl) {
+        String actualUrl = footer.getCurrentUrl();
+        assertEquals(expectedUrl, actualUrl, "The url doesn't seem to be correct");
+    }
+
+    // Author: Daniel
+    @When("User clicks on the Checkout link in the footer")
+    public void user_clicks_on_the_checkout_link_in_the_footer() {
+        footer.clickOnTheCheckoutLink();
+    }
+
+    // Author: Daniel
+    @Then("The url for the Checkout page should be {string}")
+    public void the_url_for_the_checkout_page_should_be(String expectedUrl) {
+        String actualUrl = footer.getCurrentUrl();
+        assertEquals(expectedUrl, actualUrl, "The url doesn't seem to be correct");
+    }
+
+    // Author: Daniel
+    @Then("The text in the footer should be {string}")
+    public void the_text_in_the_footer_should_be(String expectedText) {
+        String actualText = footer.getFooterText();
+        assertEquals(expectedText, actualText, "The text doesn't seem to be correct");
+    }
+
 }
 
 
