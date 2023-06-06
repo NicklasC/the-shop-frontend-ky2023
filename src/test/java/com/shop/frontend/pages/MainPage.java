@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 public class MainPage {
     WebDriver driver;
 
+    // Author: Jim
     By img_backpack = By.xpath("/html/body/div[1]/div/div[2]/img");
     By txt_heading = By.cssSelector(".display-4.fw-bold.lh-1");
     By btn_AllProducts = By.cssSelector(".btn.btn-primary.btn-lg.px-4.me-md-2.fw-bold");
