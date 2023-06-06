@@ -24,7 +24,6 @@ public class ProductPage {
     }
 
     // Author: Priyanka
-
     public void clickOnButtonShop() {
         WebElement element = driver.findElement(btn_Shop);
         element.click();

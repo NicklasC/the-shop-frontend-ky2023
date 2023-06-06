@@ -1,10 +1,9 @@
 Feature: Test checkout page validation and functionality
 
-  #TODO: This is a tutorial scenario, remove when suitable.
   # Author: Nicklas
   Scenario: Set username and verify it shows
-    Given user set userName to "Nicklas"
-    Then userName should be "Nicklas"
+    Given user set userName to "Test user"
+    Then userName should be "Test user"
 
 # Author: Nicklas
   Scenario: Add products to cart and verify sum is correct
@@ -18,7 +17,7 @@ Feature: Test checkout page validation and functionality
     Then checkout form should display
     Then checkout badge text should be "3"
     Then cart size should be "3"
-    And checkout total should be "$188"
+    And checkout total should be "$188.24"
 
 # Author: Nicklas
   Scenario: Verify removing items from the cart
@@ -30,8 +29,8 @@ Feature: Test checkout page validation and functionality
     Then checkout form should display
     Then checkout badge text should be "2"
     Then cart size should be "2"
-    And checkout total should be "$132"
+    And checkout total should be "$132.25"
     Then click the top remove button
     Then cart size should be "1"
     Then checkout badge text should be "1"
-    And checkout total should be "$22"
+    And checkout total should be "$22.30"

@@ -16,22 +16,33 @@ public class Footer {
 
     public Footer(WebDriver driver) {this.driver = driver;}
 
+    // Author: Daniel
     public void clickOnTheHomeLink() {
         driver.findElement(link_Home).click();
     }
+
+    // Author: Daniel
     public void clickOnTheShopLink() {
         driver.findElement(link_Shop).click();
     }
+
+    // Author: Daniel
     public void clickOnTheCheckoutLink() {
         driver.findElement(link_Checkout).click();
     }
+
+    // Author: Daniel
     public void clickOnTheAboutLink() {
         WebElement aboutLink = driver.findElement(link_About);
         aboutLink.click();
     }
+
+    // Author: Daniel
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
+
+    // Author: Daniel
     public String getFooterText() {
         WebElement footerText = driver.findElement(txt_Footer);
         return footerText.getText();

@@ -1,10 +1,8 @@
 package com.shop.frontend.stepdefinitions;
 
+import com.shop.frontend.pages.*;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import com.shop.frontend.pages.*;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -62,9 +60,9 @@ public class Stepdefs {
     }
 
     // Author: Camilla
-    @Given("User is on the page https:\\/\\/webshop-agil-testautomatiserare.netlify.app\\/")
-    public void user_is_on_the_page_https_webshop_agil_testautomatiserare_netlify_app() {
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+    @Given("User is on the page https:\\/\\/webshop-team2.netlify.app\\/")
+    public void user_is_on_the_page_https_webshop_team2_netlify_app() {
+        driver.get("https://webshop-team2.netlify.app/");
     }
 
     // Author: Camilla
@@ -82,7 +80,7 @@ public class Stepdefs {
     // Author: Camilla
     @Then("The user should be navigated to the main page")
     public void the_user_should_be_navigated_to_the_main_page() {
-        String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/index.html";
+        String expectedUrl = "https://webshop-team2.netlify.app/index.html";
         String actualUrl = header.getCurrentURL();
         assertEquals(expectedUrl, actualUrl, "The Home link in the header does not navigate to the right location");
     }
@@ -96,7 +94,7 @@ public class Stepdefs {
     // Author: Camilla
     @Then("The user should be navigated to the products page")
     public void the_user_should_be_navigated_to_the_products_page() {
-        String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
+        String expectedUrl = "https://webshop-team2.netlify.app/products.html";
         String actualUrl = header.getCurrentURL();
         assertEquals(expectedUrl, actualUrl, "The Shop link in the header does not navigate to the right location");
     }
@@ -110,7 +108,7 @@ public class Stepdefs {
     // Author: Camilla
     @Then("The user should be navigated to the checkout page")
     public void the_user_should_be_navigated_to_the_checkout_page() {
-        String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/checkout.html";
+        String expectedUrl = "https://webshop-team2.netlify.app/checkout.html";
         String actualUrl = header.getCurrentURL();
         assertEquals(expectedUrl, actualUrl, "The checkout button in the header does not navigate to the right location");
     }
@@ -118,7 +116,7 @@ public class Stepdefs {
     // Author: Nicklas
     @Given("user visits The Shop main page")
     public void userVisitsTheShopMainpage() {
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");//Before each normally navigates to page, but doing it here as well for better test understandability.
+        driver.get("https://webshop-team2.netlify.app/");//Before each normally navigates to page, but doing it here as well for better test understandability.
     }
 
     // Author: Nicklas
@@ -140,8 +138,7 @@ public class Stepdefs {
     // Author: Nicklas
     @Given("user set userName to {string}")
     public void setUserName(String userName) {
-        //Navigating to checkoutpage for testing. TODO:Remove navigation below once navigation step is in place.
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/checkout.html");
+        driver.get("https://webshop-team2.netlify.app/checkout.html");
 
         CheckoutPage page = new CheckoutPage(driver);
         page.setFirstName(userName);
@@ -157,7 +154,7 @@ public class Stepdefs {
     // Author: Jim
     @Given("User is on main page")
     public void user_is_on_main_page() {
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+        driver.get("https://webshop-team2.netlify.app/");
     }
 
     // Author: Jim
@@ -177,7 +174,7 @@ public class Stepdefs {
     // Author: Jim
     @Given("User is still on main page")
     public void user_is_still_on_main_page() {
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+        driver.get("https://webshop-team2.netlify.app/");
     }
 
     // Author: Jim
@@ -191,7 +188,7 @@ public class Stepdefs {
     @Then("User should be navigated to the products page")
     public void user_should_be_navigated_to_the_products_page() {
         MainPage mainPage = new MainPage(driver);
-        String expectedUrl = "https://webshop-agil-testautomatiserare.netlify.app/products.html";
+        String expectedUrl = "https://webshop-team2.netlify.app/products.html";
         String actualUrl = mainPage.getCurrentURL();
         assertEquals(expectedUrl, actualUrl, "All products button is not working.");
     }
@@ -199,7 +196,7 @@ public class Stepdefs {
     // Author: Priyanka
     @Given("Visit The Shop Website")
     public void visitTheShopWebsite() {
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+        driver.get("https://webshop-team2.netlify.app/");
     }
 
     // Author: Priyanka
@@ -295,7 +292,7 @@ public class Stepdefs {
     // Author: Daniel
     @Given("User is on the product page")
     public void user_is_on_the_product_page() {
-        driver.get("https://webshop-agil-testautomatiserare.netlify.app/products.html");
+        driver.get("https://webshop-team2.netlify.app/products.html");
     }
     // Author: Daniel
     @When("User clicks on the Home link in the footer")

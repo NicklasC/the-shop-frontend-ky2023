@@ -9,13 +9,8 @@ public class Header {
 
     // Author: Camilla
     By link_home = By.xpath("/html/body/header/div/div/ul/li[1]/a");
-    // Author: Camilla
     By link_shop = By.xpath("/html/body/header/div/div/ul/li[2]/a");
-
-    // Author: Camilla
     By webElement_headerLogo = By.xpath("/html/body/header/div/div/a/h1");
-
-    // Author: Camilla
     By button_checkout = By.className("btn-warning");
 
     // Author: Nicklas
